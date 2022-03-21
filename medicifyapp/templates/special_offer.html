@@ -1,0 +1,327 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load dynamic_color_custom_tags %}
+
+{% block title %}Special Page{% endblock %}
+
+{% block body %}
+
+
+
+
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+        <link rel="stylesheet" href="{% static '' %}css/font-awesome.css">
+        <link rel="stylesheet" href="{% static '' %}css/templatemo_style.css">
+        <link rel="stylesheet" href="{% static '' %}css/templatemo_misc.css">
+        <link rel="stylesheet" href="{% static '' %}css/flexslider.css">
+        <link rel="stylesheet" href="{% static '' %}css/testimonails-slider.css">
+        <link rel="icon" href="{% static 'default-monochrome.svg' %}" type="{% static 'default-monochrome.svg' %}">
+        <script src="{% static '' %}js/vendor/modernizr-2.6.1-respond-1.1.0.min.js"></script>
+
+{% if messages %}
+{% for message in messages %}
+<div class="container">
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+  <h5 class="text-center"> {{message}}</h5>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+</div>
+
+{% endfor %}
+{% endif %}
+
+
+
+<span id="my_demos"></span>
+
+         {% if get_offer.offer_image %}
+         <div class="top_banner">
+			<div class="opacity-mask d-flex align-items-center" data-opacity-mask="rgba(0, 0, 0, 0.3)">
+				<div class="container">
+                    <h1 class="display-4 text-center">{% if get_offer.Offer_Name %}{{get_offer.Offer_Name}}{% else %}EXPIRED{% endif %}</h1>
+                    <p class="lead text-center">{% if get_offer.Offer_Text %}{{get_offer.Offer_Text}}{% endif %}</p>
+					{% if get_offer.Offer_Name %}
+					 <div class="text-center">Last Date : <span id="get_campaign_last_time">{{dates_end_strptime}}</span></div>
+					{% endif %}
+
+
+					<div>
+					  <style type="text/css">
+						.tg  {border-collapse:collapse;border-spacing:0;}
+						.tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+						  overflow:hidden;padding:10px 5px;word-break:normal;}
+						.tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+						  font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+						.tg .tg-rylt{background-color:{% count_active_campaign_product %}; border-color:#ffffff; color:#ffffff;font-weight:bold;text-align:center;vertical-align:top}
+						@media screen and (max-width: 767px){.tg {width: auto !important;}.tg col {width: auto !important;}.tg-wrap {overflow-x: auto;-webkit-overflow-scrolling: touch;margin: auto 0px;}}
+						</style>
+
+						<table class="tg" style="undefined;table-layout: fixed; width: 290px; margin-left: auto; margin-right: auto;">
+						<colgroup>
+							<col style="width: 73px">
+							<col style="width: 73px">
+							<col style="width: 73px">
+							<col style="width: 73px">
+						</colgroup>
+						<thead>
+						  <tr>
+							<th class="tg-rylt">Days</th>
+							<th class="tg-rylt">Hours</th>
+							<th class="tg-rylt">Minutes</th>
+							<th class="tg-rylt">Seconds</th>
+						  </tr>
+						</thead>
+						<tbody>
+						  <tr>
+							<td class="tg-rylt" id="days_show">00</td>
+							<td class="tg-rylt" id="hours_show">00</td>
+							<td class="tg-rylt" id="minutes_show">00</td>
+							<td class="tg-rylt" id="seconds_show">00</td>
+						  </tr>
+						</tbody>
+						</table>
+						</div>
+
+                  </div>
+			</div>
+			<img src="/media/{{get_offer.offer_image}}" class="img-fluid" alt="">
+		</div>
+         {% else %}
+         <div class="jumbotron">
+          <div class="container">
+                    <h1 class="display-4 text-center">{% if get_offer.Offer_Name %}{{get_offer.Offer_Name}}{% else %}EXPIRED{% endif %}</h1>
+                    <p class="lead text-center">{% if get_offer.Offer_Text %}{{get_offer.Offer_Text}}{% endif %}</p>
+					{% if get_offer.Offer_Name %}
+					 <div class="text-center">Last Date : <span id="get_campaign_last_time">{{dates_end_strptime}}</span></div>
+					{% endif %}
+
+
+					<div>
+					  <style type="text/css">
+						.tg  {border-collapse:collapse;border-spacing:0;}
+						.tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+						  overflow:hidden;padding:10px 5px;word-break:normal;}
+						.tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+						  font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+						.tg .tg-rylt{background-color:{% count_active_campaign_product %}; border-color:#ffffff; color:#ffffff;font-weight:bold;text-align:center;vertical-align:top}
+						</style>
+
+						<table class="tg" style="undefined;table-layout: fixed; width: 290px; margin-left: auto; margin-right: auto;">
+						<colgroup>
+							<col style="width: 73px">
+							<col style="width: 73px">
+							<col style="width: 73px">
+							<col style="width: 73px">
+						</colgroup>
+						<thead>
+						  <tr>
+							<th class="tg-rylt">Days</th>
+							<th class="tg-rylt">Hours</th>
+							<th class="tg-rylt">Minutes</th>
+							<th class="tg-rylt">Seconds</th>
+						  </tr>
+						</thead>
+						<tbody>
+						  <tr>
+							<td class="tg-rylt" id="days_show">00</td>
+							<td class="tg-rylt" id="hours_show">00</td>
+							<td class="tg-rylt" id="minutes_show">00</td>
+							<td class="tg-rylt" id="seconds_show">00</td>
+						  </tr>
+						</tbody>
+						</table>
+						</div>
+
+                  </div>
+        </div>
+         {% endif %}
+
+
+
+	<main>
+			<div class="container margin_30">
+			<div class="row">
+				{% if get_prds %}
+				<div class="col-lg-12">
+					<div class="alert alert-info text-center theme_color" style="" role="alert">
+					  <h4 style=" color:white;">Discount Products</h4>
+					</div>
+					<div class="row small-gutters">
+						{% for n in get_prds %}
+						<div class="col-6 col-md-3 mt-3" style="box-shadow: 2px 2px 5px 2px #888888;">
+							<div class="grid_item">
+								<span class="ribbon off" style="background-color:#1D73CF;">{{n.Percentage}}%</span>
+								<figure>
+									<a href="{% url 'details_products' n.Product.id %}">
+										<img class="card-img-top" src="/media/{{n.Product.image}}" data-src="/media/{{n.Product.image}}" alt="" style="max-width:100%; width:auto; height:100px; display: block; margin-left: auto; margin-right: auto; padding-top:12px;">
+									</a>
+
+
+
+								</figure>
+								<a>
+									<h3 id="nameproduct{{n.id}}">{{n.Product.product_name}}</h3>
+<!--									<h3><small>{{n.Product.image}}</small></h3>-->
+								</a><br><br>
+								<a href="{% url 'details_products' n.Product.id %}" class="btn theme_color" style="color:white;">QUOTE</a>
+
+
+							</div>
+							<!-- /grid_item -->
+						</div>
+						<!-- /col -->
+						{% endfor %}
+					</div>
+					<!-- /row -->
+
+
+
+					<div class="pagination__wrapper">
+						<ul class="pagination">
+							{% if list %}
+							<li>
+								{% if Product_Details_all.has_previous %}
+								<a href="{% url 'index' %}?page={{Product_Details_all.previous_page_number}}" class="prev" title="previous page">&#10094;</a>
+								{% endif %}
+							</li>
+							{% for i in list %}
+							<li>
+								<a href="{% url 'index' %}?page={{i}}" class="{% if page_num == i %}active{% else %}{% endif %}">{{i}}</a>
+							</li>
+							{% endfor %}
+
+							<li>
+								{% if Product_Details_all.has_next %}
+								<a href="{% url 'index' %}?page={{Product_Details_all.next_page_number}}" class="next" title="next page">&#10095;</a>
+								{% endif %}
+							</li>
+							{% endif %}
+
+
+							{% if list1 %}
+							<li>
+								{% if Product_Details_all.has_previous %}
+								<a href="?page={{Product_Details_all.previous_page_number}}{% if request.GET.search_product %}&search_product={{ request.GET.search_product }}{% endif %}" class="prev" title="previous page">&#10094;</a>
+								{% endif %}
+							</li>
+							{% for i in list1 %}
+							<li>
+								<a href="?page={{i}}{% if request.GET.search_product %}&search_product={{ request.GET.search_product }}{% endif %}" class="{% if page_num == i %}active{% else %}{% endif %}">{{i}}</a>
+							</li>
+							{% endfor %}
+
+							<li>
+								{% if Product_Details_all.has_next %}
+								<a href="?page={{Product_Details_all.next_page_number}}{% if request.GET.search_product %}&search_product={{ request.GET.search_product }}{% endif %}" class="next" title="next page">&#10095;</a>
+								{% endif %}
+							</li>
+							{% endif %}
+
+
+
+							{% if list2 %}
+							<li>
+								{% if Product_Details_all.has_previous %}
+								<a href="?page={{Product_Details_all.previous_page_number}}{% if request.GET.checkbox_cat_seach %}&checkbox_cat_seach={{ request.GET.checkbox_cat_seach }}{% endif %}{% if request.GET.price_search_check %}&price_search_check={{ request.GET.price_search_check }}{% endif %}" class="prev" title="previous page">&#10094;</a>
+								{% endif %}
+							</li>
+							{% for i in list2 %}
+							<li>
+								<a href="?page={{i}}{% if request.GET.checkbox_cat_seach %}&checkbox_cat_seach={{ request.GET.checkbox_cat_seach }}{% endif %}{% if request.GET.price_search_check %}&price_search_check={{ request.GET.price_search_check }}{% endif %}" class="active">{{i}}</a>
+							</li>
+							{% endfor %}
+
+							<li>
+								{% if Product_Details_all.has_next %}
+								<a href="?page={{Product_Details_all.next_page_number}}{% if request.GET.checkbox_cat_seach %}&checkbox_cat_seach={{ request.GET.checkbox_cat_seach }}{% endif %}{% if request.GET.price_search_check %}&price_search_check={{ request.GET.price_search_check }}{% endif %}" class="next" title="next page">&#10095;</a>
+								{% endif %}
+							</li>
+							{% endif %}
+						</ul>
+					</div>
+
+				</div>
+
+				{% endif %}
+
+				<!-- /col -->
+			</div>
+			<!-- /row -->
+		</div>
+		<!-- /container -->
+	</main>
+	<!-- /main -->
+
+{% endblock %}
+
+
+{% block js %}
+
+
+{% if get_offer.Offer_Name %}
+<script>
+
+var get_campaign_last_ti = document.getElementById('get_campaign_last_time').innerHTML;
+var campaign_end_t = `${get_campaign_last_ti} 23:59:59`;
+
+// Set the date we're counting down to
+// var countDownDate = new Date("Jan 5, 2022 15:37:25").getTime();
+var countDownDate = new Date(campaign_end_t).getTime();
+//document.getElementById("my_demos").innerHTML = countDownDate;
+
+
+// Update the count down every 1 second
+var x = setInterval(function() {
+  // Get today's date and time
+  var now = new Date().getTime();
+
+  // Find the distance between now and the count down date
+  var distance = countDownDate - now;
+
+
+  // Time calculations for days, hours, minutes and seconds
+  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+
+
+  //console.log(days + "d " + hours + "h "+ minutes + "m " + seconds + "s ");
+
+  // Display the result in the element with id="demo"
+  //document.getElementById("show_time_count").innerHTML = days + "d " + hours + "h "+ minutes + "m " + seconds + "s ";
+
+  document.getElementById('days_show').innerHTML = days;
+  document.getElementById('hours_show').innerHTML = hours;
+  document.getElementById('minutes_show').innerHTML = minutes;
+  document.getElementById('seconds_show').innerHTML = seconds;
+
+  //$('.prod_days_show').html(days)
+  //$('.prod_hours_show').html(hours)
+  //$('.prod_mins_show').html(minutes)
+  //$('.prod_secs_show').html(seconds)
+
+//   element.getElementsByClassName('prod_days_show') = days;
+//   element.getElementsByClassName('prod_hours_show') = hours;
+//   element.getElementsByClassName('prod_mins_show') = minutes;
+//   element.getElementsByClassName('prod_secs_show') = seconds;
+
+  // If the count down is finished, write some text
+  if (distance < 0) {
+    clearInterval(x);
+    //document.getElementById("demo").innerHTML = "EXPIRED";
+    document.getElementById('days_show').innerHTML = 00;
+  document.getElementById('hours_show').innerHTML = 00;
+  document.getElementById('minutes_show').innerHTML = 00;
+  document.getElementById('seconds_show').innerHTML = 00;
+  }
+}, 1000);
+
+</script>
+{% endif %}
+
+{% endblock %}

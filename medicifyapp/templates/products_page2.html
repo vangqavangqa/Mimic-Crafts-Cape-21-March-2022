@@ -1,0 +1,142 @@
+{% extends 'base.html' %}
+{% block title %}Products{% endblock %}
+{% block body %}
+
+
+<style>
+.block11 {
+  display: block;
+  width: 100%;
+  border: none;
+  background-color: #FEC52C;
+  padding: 12px;
+  margin top: 10;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.block12 {
+  display: block;
+  width: 100%;
+  border: none;
+  padding: 14px;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.text_max_3 {
+     overflow: hidden;
+     text-overflow: ellipsis;
+     display: -webkit-box;
+     -webkit-line-clamp: 3; /* number of lines to show */
+     -webkit-box-orient: vertical;
+  }
+
+
+.text_max_1 {
+     overflow: hidden;
+     text-overflow: ellipsis;
+     display: -webkit-box;
+     -webkit-line-clamp: 1; /* number of lines to show */
+     -webkit-box-orient: vertical;
+  }
+
+</style>
+
+
+    <main>
+		<div class="container">
+
+
+			<div class="container margin_30">
+                <div class="alert alert-warning" role="alert">
+                  About {{qty_brn}} Brands Found!
+                </div>
+
+			<div class="row">
+                <div class="col-lg-9">
+
+                        <h5>Brands of {{get_Subcategory.Subcategory}}:</h5><hr>
+
+                        {% if all_prd %}
+                        {% for k in all_prd %}
+
+                        <div class="card mb-3 container" style="box-shadow: 5px 5px 5px #888888; max-width: 900px; margin-top:36px;">
+                          <div class="row no-gutters" style="padding-top:10px; padding-bottom:10px;">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-2">
+                              <a href="{% url 'products_subcats_brands' %}?brand={{k.id}}&&subcategory={{get_Subcategory.id}}">
+                                <img src="/media/{{k.Brand_image}}" class="card-img" alt="..." height="150" width="100">
+                              </a>
+                            </div>
+                            <div class="col-md-1"></div>
+                            <div class="col-md-7">
+                              <div class="card-body">
+                                  <h5 class="card-title"><a href="{% url 'products_subcats_brands' %}?brand={{k.id}}&&subcategory={{get_Subcategory.id}}">{{k.Brand_name}}</a></h5>
+                                  <span class="text-muted text_max_3">{{k.Brand_discription | safe}}</span><br>
+                              </div>
+                            </div>
+
+                          </div>
+                        </div>
+
+
+                        {% endfor %}
+
+
+                        {% else %}
+
+                        <div class="alert alert-warning container" role="alert">
+                          <h6 class="text-center">No Products Are Available Now !!!</h6>
+                        </div>
+
+                        {% endif %}
+
+
+
+
+                <div class="pagination__wrapper">
+						<ul class="pagination">
+							{% if list %}
+							<li>
+								{% if all_prd.has_previous %}
+                                <a href="?page={{all_prd.previous_page_number}}" class="prev" title="previous page">&#10094;</a>
+								{% endif %}
+							</li>
+							{% for i in list %}
+							<li>
+                                <a href="?page={{i}}" class="{% if page_num == i %}active{% else %}{% endif %}">{{i}}</a>
+							</li>
+							{% endfor %}
+
+							<li>
+								{% if all_prd.has_next %}
+                                <a href="?page={{all_prd.next_page_number}}" class="next" title="next page">&#10095;</a>
+								{% endif %}
+							</li>
+							{% endif %}
+
+						</ul>
+					</div>
+						<!-- /col -->
+
+                </div>
+
+				<div class="col-lg-3">
+					{% include 'sidebar.html' %}
+				</div>
+				<!-- /col -->
+
+
+			</div>
+			<!-- /row -->
+
+		</div>
+            <!-- /container -->
+        </div>
+	</main>
+
+
+{% endblock %}

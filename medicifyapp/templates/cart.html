@@ -1,0 +1,437 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block title %}Cart - Mimic Crafts Cape{% endblock %}
+{% block body %}
+
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Ansonika">
+
+
+    <!-- Favicons-->
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" type="image/x-icon" href="img/apple-touch-icon-57x57-precomposed.png">
+    <link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href="img/apple-touch-icon-72x72-precomposed.png">
+    <link rel="apple-touch-icon" type="image/x-icon" sizes="114x114" href="img/apple-touch-icon-114x114-precomposed.png">
+    <link rel="apple-touch-icon" type="image/x-icon" sizes="144x144" href="img/apple-touch-icon-144x144-precomposed.png">
+	
+    <!-- GOOGLE WEB FONT -->
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+    <link rel="preload" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&display=swap" as="fetch" crossorigin="anonymous">
+    <script>
+    !function(e,n,t){"use strict";var o="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&display=swap",r="__3perf_googleFonts_c2536";function c(e){(n.head||n.body).appendChild(e)}function a(){var e=n.createElement("link");e.href=o,e.rel="stylesheet",c(e)}function f(e){if(!n.getElementById(r)){var t=n.createElement("style");t.id=r,c(t)}n.getElementById(r).innerHTML=e}e.FontFace&&e.FontFace.prototype.hasOwnProperty("display")?(t[r]&&f(t[r]),fetch(o).then(function(e){return e.text()}).then(function(e){return e.replace(/@font-face {/g,"@font-face{font-display:swap;")}).then(function(e){return t[r]=e}).then(f).catch(a)):a()}(window,document,localStorage);
+    </script>
+
+    <!-- BASE CSS -->
+    <link href="{% static 'medicifyapp/cart/css/bootstrap.custom.min.css' %}" rel="stylesheet">
+    <link href="{% static 'medicifyapp/cart/css/style.css' %}" rel="stylesheet">
+
+	<!-- SPECIFIC CSS -->
+    <link href="{% static 'medicifyapp/cart/css/cart.css' %}" rel="stylesheet">
+
+</head>
+
+<body>
+	
+	<div id="page">
+	
+	<main class="">
+		<div class="container margin_30">
+		<div class="page_header">
+			<div class="breadcrumbs">
+				<ul>
+					<li><a href="/">Home</a></li>
+					<li>Cart active</li>
+				</ul>
+			</div>
+			<h1>Cart page</h1>
+		</div>
+
+			<div class="margin_30">
+
+		<!-- /page_header -->
+		<table class="table table-striped cart-list">
+							<thead>
+								<tr>
+									<th>
+										Image
+									</th>
+									<th>
+										Name
+									</th>
+									<th>
+										Quantity
+									</th>
+									<th>
+
+									</th>
+									<th>
+
+									</th>
+								</tr>
+							</thead>
+							<tbody id="items_showing">
+
+
+							</tbody>
+						</table>
+
+
+					<!-- /cart_actions -->
+
+		</div>
+		
+
+		<ul class="list-group" id="items">
+		  
+		</ul>
+
+		
+		<ul class="list-group">
+			<li class="list-group-item d-flex justify-content-between align-items-center">
+			    <b>Apply Coupon</b>
+			    <div class="row" id="">
+					<div class="col-sm-12 col-md-6 col-lg-6" id="id_copn_div"><input type="text" name="Name" class="form-control" placeholder="Coupon Code" id="coupon_input"></div>
+					<div class="col-sm-12 col-md-6 col-lg-6" id="coupon_button"><input type="submit" value="Apply Code" class="btn_1" onclick="apply_coupon()"></div>
+
+				</div>
+			  </li>
+		</ul>
+
+
+<!--		<ul class="list-group">-->
+<!--			<li class="list-group-item d-flex justify-content-between align-items-center">-->
+<!--			    <b>Total Bill</b>-->
+<!--			    <span class="badge badge-primary badge-pill" id="totalprice"></span>-->
+<!--			  </li>-->
+<!--		</ul>-->
+
+		</div>
+		<!-- /container -->
+
+		<!-- /box_cart -->
+						{% if user.is_authenticated %}
+						<h3 class="text-center">User Info and Billing address</h3>
+						<div class="tab-content checkout container">
+						<form action="{% url 'cart' %}" method="POST"> {% csrf_token %}
+
+							<!-- /row -->
+
+
+							<div class="form-group">
+								<label class="form-label">Full Name</label>
+								<input type="text" id="full_name" name="full_name" class="form-control" placeholder="Full Name" required>
+							</div>
+
+
+							<div class="form-group">
+
+								<label class="form-label">Full Address</label>
+								<input type="text" id="full_address" name="full_address" class="form-control" placeholder="Full Address" required>
+								<input type="hidden" id="items_json" name="items_json">
+
+								<span id="id_prd_details"></span>
+								<span id="id_coupon"></span>
+								<input type="hidden" id="all_prod" name="all_prod">
+								<input type="hidden" id="all_prod_price" name="all_prod_price">
+								<input type="hidden" id="all_prod_qty" name="all_prod_qty">
+<!--								<input type="hidden" id="total_bill" name="total_bill">-->
+								<input type="hidden" id="currency_type1222" name="currency_type1222">
+							</div>
+							<div class="row no-gutters">
+
+
+								<div class="col-12 form-group pr-1">
+									<label class="form-label">Company Name</label>
+									<input type="text" id="company_name" name="company_name" class="form-control" placeholder="Company Name">
+								</div>
+								<div class="col-6 form-group pr-1">
+									<label class="form-label">City</label>
+									<input type="text" id="city" name="city" class="form-control" placeholder="City" required>
+								</div>
+								<div class="col-6 form-group pl-1">
+									<label class="form-label">Postal code</label>
+									<input type="number" id="postal_code" name="postal_code" class="form-control" placeholder="Postal code" required>
+								</div>
+							</div>
+							<!-- /row -->
+							<div class="row no-gutters">
+								<div class="col-md-12 form-group">
+									<label class="form-label">Country</label>
+									<input type="text" id="country" name="country" class="form-control" placeholder="country" id="country" required>
+								</div>
+							</div>
+							<!-- /row -->
+							<div class="form-group">
+								<label class="form-label">Phone Number</label>
+								<input type="number" id="phone" name="phone" class="form-control" placeholder="Phone" required>
+							</div>
+
+
+							<div class="form-group">
+								<label class="form-label">Email Address</label>
+								<input type="email" name="email" value="{{request.user.email}}"  class="form-control" placeholder="Email*" required>
+							</div>
+							<div class="form-group">
+								<button class="btn btn-outline-primary">Confirm and CheckOut</button>
+							</div>
+
+						</form>
+
+
+					</div>
+
+					{% else %}
+					<hr>
+					<h3 class="text-center">You have to log in first !!</h3>
+						<div class="tab-content checkout container">
+
+						<form action="/login_func" method="POST"> {% csrf_token %}
+							<div class="form-group">
+								<input type="text" name="log_username" class="form-control" placeholder="Username" required>
+							</div>
+							<div class="form-group">
+								<input type="password" name="log_password" class="form-control" placeholder="Password" required>
+							</div>
+							<div>Don't Have account. <a href="{% url 'account' %}">Register</a> Now.</div>
+
+							<div class="form-group">
+								<button class="btn btn-outline-primary">Login</button>
+							</div>
+
+						</form>
+
+
+					</div>
+
+					{% endif %}
+
+
+	</main>
+	<!--/main-->
+
+
+
+
+	</div>
+	<!-- page -->
+
+	<div id="toTop"></div><!-- Back to top button -->
+
+	<!-- COMMON SCRIPTS -->
+    <script src="{% static 'medicifyapp/cart/js/common_scripts.min.js' %}"></script>
+    <script src="{% static 'medicifyapp/cart/js/main.js' %}"></script>
+
+
+</body>
+
+{% endblock %}
+
+
+{% block js %}
+
+<script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+
+
+
+{% if Thank %}
+<script>
+console.log('order done')
+alert('Thanks For ordering. Your Order Id is {{order_id}}. Check Your Email.')
+localStorage.clear();
+document.location='/'
+</script>
+{% endif %}
+
+
+<script>
+
+
+
+
+
+function apply_coupon(){
+	console.log('coupon')
+	var vcoupon_input = document.getElementById('coupon_input').value;
+	console.log(vcoupon_input)
+	if(vcoupon_input == ''){
+		document.getElementById('coupon_button').innerHTML = `<input type="submit" value="Apply Code" class="btn_1" onclick="apply_coupon()">`;
+		document.getElementById('id_copn_div').innerHTML = `<input type="text" name="Name" class="form-control" placeholder="Coupon Code" id="coupon_input"><span style="color:red;">Please Inter Code!</span>`;
+	}
+	else{
+		document.getElementById('coupon_button').innerHTML = `<button class="btn btn-secondary" disabled>Please Wait...</button>`;
+
+		$.ajax({
+            url : '{% url 'check_coupon' %}',
+            type : 'POST',
+            data : {vcoupon_input:vcoupon_input}
+        })
+        .done(function(response){
+        	console.log(response)
+        	if(response == 'False'){
+        		document.getElementById('coupon_button').innerHTML = `<input type="submit" value="Try Again Code" class="btn_1" onclick="apply_coupon()">`;
+				document.getElementById('id_copn_div').innerHTML = `<input type="text" name="Name" class="form-control" placeholder="Coupon Code" id="coupon_input"><span style="color:red;">Coupon Code is Invalid!</span>`;
+        	}
+        	else{
+        		document.getElementById('coupon_button').innerHTML = `<span style="color:blue;">Congrates You Got ${response}% Discount!</span>`;
+
+				document.getElementById('id_copn_div').innerHTML = "";
+				document.getElementById('id_coupon').innerHTML = `<input type="hidden" value="${vcoupon_input}" name="coupon_code">`;
+
+				//var t_cost = document.getElementById('total_bill').value;
+				//total_cost_after_coupon = (t_cost*response)/100;
+				//let this_is_total = total_cost_after_coupon.toFixed(2);
+				//$('#total_bill').val(JSON.stringify(this_is_total));
+				//document.getElementById('totalprice').innerHTML = `Total : ${this_is_total} ZAR`;
+
+        	}
+        })
+
+	}
+
+}
+
+
+
+
+
+
+// console.log('working');
+
+var all_prod=[];
+var all_prod_price=[];
+var all_prod_qty=[];
+
+
+var prod_details=[];
+var sum=0;
+var itemtotalprice=0;
+var totalprice=0;
+
+if ($.isEmptyObject(product_cart)){
+	mystr = `<p class="text-center">Your Cart Is Empty. Add Some Product for checkout!!</p>`
+	$('#items').append(mystr);
+}
+else{
+	for (item in product_cart){
+		let name = product_cart[item][1];
+		let qty = product_cart[item][0]
+		let itemprice=product_cart[item][2]
+		let currency_type = product_cart[item][3]
+		var img_prod = product_cart[item][4]
+		var cat_name = product_cart[item][5]
+		var subcat_name = product_cart[item][6]
+		var percentage_qty = product_cart[item][7]
+
+
+		sum = sum + qty;
+		itemtotalprice=qty* itemprice;
+		totalprice = totalprice + qty* itemprice;
+
+		currency_type1=currency_type;
+
+		console.log('currency_type1')
+		console.log(currency_type1)
+		console.log(currency_type1.replace(/ /g, ""));
+
+
+		prod_details= prod_details + `[Product Name : ${name}, Qty:${qty}, Cat:${cat_name}, Subcat:${subcat_name}, Discount Offer: ${percentage_qty}%], `
+
+		//all_prod=all_prod+', '+name
+		all_prod.push(name)
+		all_prod_price.push(itemprice)
+		all_prod_qty.push(qty)
+
+		mystr = `<tr>
+									<td>
+										<div class="thumb_cart">
+											<img src="${img_prod}" data-src="${img_prod}" class="lazy" alt="${name}" style="height:48px;">
+										</div>
+										<span class="item_cart"></span>
+									</td>
+									<td>
+										${name}
+									</td>
+									<td>
+										<div class="numbers-row">
+											<input type="text" value="${qty}" id="quantity${item}" class="qty2" name="quantity_3">
+										<div class="inc button_inc" onclick="increase_qty_func('${item}')">+</div><div class="dec button_inc" onclick="decrease_qty_func('${item}')">-</div></div>
+									</td>
+									<td>
+
+									</td>
+									<td class="options">
+
+									</td>
+								</tr>`
+		$('#items_showing').append(mystr);
+	}
+	console.log('hihjiojioj')
+	console.log(prod_details)
+
+	document.getElementById('id_prd_details').innerHTML = `<input type="hidden" value="${prod_details}" name="prod_details">`;
+
+}
+document.getElementById('product_cart').innerHTML = sum;
+//document.getElementById('totalprice').innerHTML = 'Total : '+ totalprice+currency_type1;
+
+
+// $('#items_json').val(JSON.stringify(product_cart));
+const a = JSON.stringify(product_cart)
+$('#items_json').val(a);
+
+$('#all_prod').val(JSON.stringify(all_prod));
+$('#all_prod_price').val(JSON.stringify(all_prod_price));
+$('#all_prod_qty').val(JSON.stringify(all_prod_qty));
+$('#prod_details').val(JSON.stringify(prod_details))
+
+
+
+
+
+
+// if plus or minus button clicked, change the card as well as display value
+
+function increase_qty_func(prod_id){
+	console.log('plus_clicked');
+	console.log(prod_id)
+	//var a = this.id.slice(11, );
+	//console.log(a)
+	product_cart[prod_id][0] = product_cart[prod_id][0] + 1;
+	document.getElementById('quantity'+prod_id).value = product_cart[prod_id][0];
+	updateCart(product_cart)
+	reload_cart_page()
+}
+
+function decrease_qty_func(prod_id){
+	console.log('minus_clicked');
+
+	product_cart[prod_id][0] = product_cart[prod_id][0] - 1;
+	product_cart[prod_id][0] = Math.max(0, product_cart[prod_id][0]);
+	console.log(product_cart[prod_id][0])
+	document.getElementById('quantity'+prod_id).value = product_cart[prod_id][0];
+	updateCart(product_cart)
+	reload_cart_page()
+}
+
+function reload_cart_page(){
+	document.location='/cart'
+}
+
+//$('#total_bill').val(JSON.stringify(totalprice));
+$('#currency_type1222').val(JSON.stringify(currency_type1));
+
+</script>
+
+
+{% endblock %}

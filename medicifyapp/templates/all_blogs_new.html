@@ -1,0 +1,31 @@
+{% load static %}
+{% load el_pagination_tags %}
+{% lazy_paginate 6 all_latest_pst %}
+        {# your code to show the entry #}
+
+                {% if all_latest_pst %}
+                    {% for i in all_latest_pst %}
+                        <div class="col-md-4 col-sm-6">
+                            <div class="blog-post" style="box-shadow: 5px 5px 5px #888888;">
+                                <div class="blog-thumb">
+                                    <a href="{% url 'blog_details' i.id %}">
+                                    <img src="/media/{{i.img}}" alt="" style="max-width:100%; width:auto; height:300px; display: block; margin-left: auto; margin-right: auto;"/>
+                                    </a>
+                                </div>
+                                <div class="blog-content">
+                                    <div class="content-show">
+                                        <h4><a href="{% url 'blog_details' i.id %}">{{i.title}}</a></h4>
+                                        <span>{{i.time}}</span>
+                                    </div>
+                                    <div class="content-hide">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {% endfor %}
+                {% else %}
+                Nothing To Show
+                {% endif %}
+{% show_more "More results" %}

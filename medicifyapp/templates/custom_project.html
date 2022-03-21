@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block title %}Custom Project{% endblock %}
+
+
+{% block body %}
+<div class="list-group-item">
+
+
+<form class="container mb-5 pb-5" method="POST" action="{% url 'custom_project' %}" enctype="multipart/form-data">{% csrf_token %}
+					<div class="form_container">
+						<div class="form-group">
+							<div class="alert alert-primary" role="alert">
+								You can send us your custom project details !
+							</div>
+
+<!--							<div class="pt-5"><h3>Post Your Job</h3></div>-->
+
+							<label class="form-label">Your Name</label>
+							<input type="text" name="your_name"  class="form-control" placeholder="Your Name*" required>
+
+						</div>
+						<div class="form-group">
+							<label class="form-label">Company Name</label>
+							<input type="text" name="company_name" value=""  class="form-control" placeholder="Company Name*" required>
+						</div>
+						<div class="form-group">
+							<label class="form-label">Email Adress</label>
+							<input type="text" name="emal_add" value=""  class="form-control" placeholder="Email Adress*" required>
+						</div>
+
+
+                        <div class="form-group">
+							<label class="form-label">Your Phone Number</label>
+							<input type="text" name="phone_number" value=""  class="form-control" placeholder="Phone Number">
+						</div>
+						<div class="form-group">
+							<label class="form-label">Project Name</label>
+							<input type="text" name="project_name" value=""  class="form-control" placeholder="Project Name*" required>
+						</div>
+
+                        <div class="form-floating">
+							<label class="form-label">Details</label>
+                          <textarea class="form-control" name="project_details" placeholder="Details About The job" id="floatingTextarea2" style="height: 100px" required></textarea>
+                        </div>
+
+						<div class="form-group">
+							<label class="form-label">Attach Any File</label>
+							<input type="file" name="attach_file"  class="form-control" required>
+						</div>
+
+
+						<div class="text-center"><input type="submit" value="Send" class="btn_1 full-width"></div>
+
+					</div>
+					</form>
+</div>
+{% endblock %}

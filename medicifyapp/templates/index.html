@@ -1,0 +1,517 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load dynamic_color_custom_tags %}
+
+
+{% block title %}Mimic Crafts Cape - Home{% endblock %}
+
+
+{% block body %}
+
+
+
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+        <link rel="stylesheet" href="{% static '' %}css/font-awesome.css">
+        <link rel="stylesheet" href="{% static '' %}css/templatemo_style.css">
+        <link rel="stylesheet" href="{% static '' %}css/templatemo_misc.css">
+        <link rel="stylesheet" href="{% static '' %}css/flexslider.css">
+        <link rel="stylesheet" href="{% static '' %}css/testimonails-slider.css">
+        <link rel="icon" href="{% static 'default-monochrome.svg' %}" type="{% static 'default-monochrome.svg' %}">
+        <script src="{% static '' %}js/vendor/modernizr-2.6.1-respond-1.1.0.min.js"></script>
+
+{% if messages %}
+{% for message in messages %}
+<div class="container">
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+  <h5 class="text-center"> {{message}}</h5>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+</div>
+
+{% endfor %}
+{% endif %}
+
+
+
+
+
+{% if bennar_first %}
+<div id="slideshow">
+    <div class="slide-wrapper">
+        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+          <div class="carousel-inner">
+			{% if bennar_first %}
+            <div class="carousel-item active">
+              <img src="/media/{{bennar_first.image}}" class="d-block w-80 container" alt="..." style="max-height:600px; height: auto;">
+<!--              <div class="carousel-caption d-none d-md-block">-->
+<!--                <h5>Awesome Foods</h5>-->
+<!--                <p>You Can See Our Food Blogs</p>-->
+<!--              </div>-->
+            </div>
+			{% endif %}
+
+
+			{% if bennar_all %}
+			{% for ll in bennar_all %}
+				<div class="carousel-item">
+				  <img src="/media/{{ll.image}}" class="d-block w-80 container" alt="..." style="max-height:600px; height: auto;">
+<!--					<div class="carousel-caption d-none d-md-block">-->
+<!--					<h5>Looks Great</h5>-->
+<!--					<p>Awesome Tasty Food</p>-->
+<!--				  </div>-->
+				</div>
+			  {% endfor %}
+			  {% endif %}
+          </div>
+
+
+
+          <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon btn btn-danger mr-5" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#carouselExampleControls" role="butt<on" data-slide="next">
+            <span class="carousel-control-next-icon btn btn-danger ml-5" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+
+
+	<main>
+
+
+
+		<div class="container">
+				<div class="row small-gutters">
+
+
+
+<!--					<div class="col-xl-3 col-lg-2 col-md-3">-->
+<!--						<ul class="top_tools">-->
+<!--							<li>-->
+<!--&lt;!&ndash;								<div class="dropdown dropdown-cart">&ndash;&gt;-->
+<!--&lt;!&ndash;									<a href="cart" class="cart_bt"></a>&ndash;&gt;-->
+<!--&lt;!&ndash;									<div class="dropdown-menu">&ndash;&gt;-->
+<!--&lt;!&ndash;										<ul>&ndash;&gt;-->
+<!--&lt;!&ndash;											<li>&ndash;&gt;-->
+<!--&lt;!&ndash;												<a href="product-detail-1">&ndash;&gt;-->
+<!--&lt;!&ndash;													<figure><img src="{% static 'medicifyapp/index/img/products/product_placeholder_square_small.jpg' %}" data-src="img/products/shoes/thumb/1.jpg" alt="" width="50" height="50" class="lazy"></figure>&ndash;&gt;-->
+<!--&lt;!&ndash;													<strong><span>1x Armor Air x Fear</span>$90.00</strong>&ndash;&gt;-->
+<!--&lt;!&ndash;												</a>&ndash;&gt;-->
+<!--&lt;!&ndash;												<a href="#0" class="action"><i class="ti-trash"></i></a>&ndash;&gt;-->
+<!--&lt;!&ndash;											</li>&ndash;&gt;-->
+<!--&lt;!&ndash;											<li>&ndash;&gt;-->
+<!--&lt;!&ndash;												<a href="product-detail-1">&ndash;&gt;-->
+<!--&lt;!&ndash;													<figure><img src="{% static 'medicifyapp/index/img/products/product_placeholder_square_small.jpg' %}" data-src="{% static 'medicifyapp/index/img/products/shoes/thumb/2.jpg' %}" alt="" width="50" height="50" class="lazy"></figure>&ndash;&gt;-->
+<!--&lt;!&ndash;													<strong><span>1x Armor Okwahn II</span>$110.00</strong>&ndash;&gt;-->
+<!--&lt;!&ndash;												</a>&ndash;&gt;-->
+<!--&lt;!&ndash;												<a href="0" class="action"><i class="ti-trash"></i></a>&ndash;&gt;-->
+<!--&lt;!&ndash;											</li>&ndash;&gt;-->
+<!--&lt;!&ndash;										</ul>&ndash;&gt;-->
+<!--&lt;!&ndash;										<div class="total_drop">&ndash;&gt;-->
+<!--&lt;!&ndash;											<div class="clearfix"><strong>Total</strong><span>$200.00</span></div>&ndash;&gt;-->
+<!--&lt;!&ndash;											<a href="cart" class="btn_1 outline">View Cart</a><a href="checkout" class="btn_1">Checkout</a>&ndash;&gt;-->
+<!--&lt;!&ndash;										</div>&ndash;&gt;-->
+<!--&lt;!&ndash;									</div>&ndash;&gt;-->
+<!--&lt;!&ndash;								</div>&ndash;&gt;-->
+<!--								&lt;!&ndash; /dropdown-cart&ndash;&gt;-->
+<!--							</li>-->
+
+<!--							<li>-->
+<!--									<a type="button" id="popcarts" class="cart_bt" data-container="body" data-toggle="popover" data-placement="bottom" data-html="true">-->
+
+<!--										&lt;!&ndash; <img src="{% static 'medicifyapp/index/img/cart_image.png' %}" alt="" width="70" height="70"> &ndash;&gt;-->
+<!--									  <strong><span id="product_cart">0</span></strong>-->
+
+<!--									</a>-->
+
+
+
+<!--									&lt;!&ndash; <a href="cart.html" class="cart_bt"><strong>2</strong></a> &ndash;&gt;-->
+<!--							</li>-->
+<!--							<li>-->
+<!--								<div class="dropdown dropdown-access">-->
+
+<!--									{% if user.is_authenticated %}-->
+
+<!--									&lt;!&ndash; <a href="/account" class="access_link"><span>Account</span></a> &ndash;&gt;-->
+<!--									<a href="/account"><font color = "#FF00FF" face = "Comic sans MS" size ="4">Hi, {{request.user.username}}</font></a>-->
+<!--									{% else %}-->
+<!--									<a href="/account"><font color = "#FF00FF" face = "Comic sans MS" size ="4">Login/Register</font></a>-->
+
+
+<!--									{% endif %}-->
+
+
+<!--									<div class="dropdown-menu">-->
+<!--										{% if user.is_authenticated %}-->
+<!--										<a href="/profile" class="btn_1">My Profile</a>-->
+<!--										{% else %}-->
+<!--										<a href="{% url 'account' %}" class="btn_1">Sign In or Sign Up</a>-->
+<!--										{% endif %}-->
+<!--										<ul>-->
+<!--											{% if user.is_authenticated %}-->
+<!--											<li>-->
+<!--												<a href="{% url 'my_order' %}"><i class="ti-package"></i>My Orders</a>-->
+<!--											</li>-->
+<!--											<li>-->
+<!--												<a href="help"><i class="ti-help-alt"></i>Help and Faq</a>-->
+<!--											</li>-->
+<!--											<li>-->
+<!--												<a href="{% url 'func_logout' %}">Log Out</a>-->
+<!--											</li>-->
+<!--											{% else %}-->
+<!--											<li>-->
+<!--												<a href="help"><i class="ti-help-alt"></i>Help and Faq</a>-->
+<!--											</li>-->
+<!--											{% endif %}-->
+<!--										</ul>-->
+<!--									</div>-->
+<!--								</div>-->
+<!--								&lt;!&ndash; /dropdown-access&ndash;&gt;-->
+<!--							</li>-->
+<!--							<li>-->
+<!--								<a href="javascript:void(0);" class="btn_search_mob"><span>Search</span></a>-->
+<!--							</li>-->
+<!--							<li>-->
+<!--								<a href="#menu" class="btn_cat_mob">-->
+<!--									<div class="hamburger hamburger&#45;&#45;spin" id="hamburger">-->
+<!--										<div class="hamburger-box">-->
+<!--											<div class="hamburger-inner"></div>-->
+<!--										</div>-->
+<!--									</div>-->
+<!--									Categories-->
+<!--								</a>-->
+<!--							</li>-->
+<!--						</ul>-->
+					</div>
+				</div>
+				<!-- /row -->
+
+
+
+
+
+<!--		{% if bennar_all %}-->
+<!--		<div class="top_banner">-->
+<!--			{% for j in bennar_all %}-->
+<!--			<div class="opacity-mask d-flex align-items-center" data-opacity-mask="rgba(0, 0, 0, 0.3)">-->
+<!--				<div class="container">-->
+
+<!--					<div class="breadcrumbs">-->
+
+<!--					</div>-->
+<!--					<h1>{{j.name}}</h1>-->
+<!--				</div>-->
+<!--			</div>-->
+<!--			<img src="/media/{{j.image}}" class="img-fluid" alt="">-->
+<!--			{% endfor %}-->
+<!--		</div>-->
+<!--		{% endif %}-->
+
+
+
+
+			<div class="container margin_30">
+
+			<div class="row">
+<!--				<aside class="col-lg-3" id="sidebar_fixed">-->
+<!--					<form method="GET" action="/category_search">-->
+<!--				    <div class="filter_col">-->
+<!--				        <div class="inner_bt"><a href="#" class="open_filters"><i class="ti-close"></i></a></div>-->
+<!--				        <div class="filter_type version_2">-->
+<!--				            <h4><a href="#filter_1" data-toggle="collapse" class="opened">Categories</a></h4>-->
+<!--				            <div class="collapse show" id="filter_1">-->
+<!--				                <ul>-->
+<!--									{% if Categories_all %}-->
+<!--									{% for cat in Categories_all %}-->
+<!--				                    <li>-->
+<!--				                        <label class="container_check">{{cat.category_name}}-->
+<!--				                            <input type="radio" name="checkbox_cat_seach" value="{{cat.id}}">-->
+
+<!--				                            <span class="checkmark"></span>-->
+<!--				                        </label>-->
+<!--				                    </li>-->
+<!--									{% endfor %}-->
+<!--									{% else %}-->
+<!--									NO Category Added-->
+<!--									{% endif %}-->
+
+<!--				                </ul>-->
+<!--				            </div>-->
+<!--				            &lt;!&ndash; /filter_type &ndash;&gt;-->
+<!--				        </div>-->
+<!--				        &lt;!&ndash; /filter_type &ndash;&gt;-->
+<!--				        <div class="filter_type version_2">-->
+<!--				            <h4><a href="#filter_2" data-toggle="collapse" class="opened">Price</a></h4>-->
+<!--				            <div class="collapse show" id="filter_2">-->
+<!--				                <ul>-->
+<!--									{% if Search_with_price_all %}-->
+<!--									{% for search_price in Search_with_price_all %}-->
+<!--				                    <li>-->
+<!--				                        <label class="container_check">{{search_price.minimum_price}} — {{search_price.maximum_price}}-->
+<!--				                            <input type="radio" name="price_search_check" value="{{search_price.id}}">-->
+<!--				                            <span class="checkmark"></span>-->
+<!--				                        </label>-->
+<!--				                    </li>-->
+<!--									{% endfor %}-->
+<!--									{% else %}-->
+<!--									NO Category Added-->
+<!--									{% endif %}-->
+
+<!--				                </ul>-->
+<!--				            </div>-->
+<!--				        </div>-->
+<!--				        -->
+<!--				        &lt;!&ndash; /filter_type &ndash;&gt;-->
+
+<!--				        <div class="buttons">-->
+
+<!--							<button type="submit" class="btn_1">Filter</button>-->
+<!--							<a href="/" class="btn_1">Reset</a>-->
+<!--				        </div>-->
+<!--				    </div>-->
+<!--					</form>-->
+<!--				</aside>-->
+<!--				&lt;!&ndash; /col &ndash;&gt;-->
+
+
+				<div class="col-lg-9">
+					<div class="alert alert-info text-center" style="background-color:{% count_active_campaign_product %};" role="alert">
+					  <h4 style=" color:white;">Categories</h4>
+					</div>
+
+					<div class="row small-gutters">
+
+
+						{% if cats %}
+
+						{% for n in cats %}
+
+						<div class="col-6 col-md-4 mt-3" style="box-shadow: 2px 2px 5px 2px #888888;">
+							<div class="grid_item">
+<!--								<span class="ribbon off">{{n.product_status}}</span>-->
+								<figure>
+									<a href="{% url 'subcats_of_cat' n.id %}">
+										<img class="card-img-top" src="/media/{{n.Category_image}}" data-src="/media/{{n.image}}" alt="" style="max-width:100%; width:auto; height:100px; display: block; margin-left: auto; margin-right: auto; padding-top:12px;">
+<!--										<img class="img-fluid lazy" src="/media/{{n.image}}" data-src="/media/{{n.image}}" alt="">-->
+									</a>
+
+
+
+								</figure>
+								<a>
+									<h3 id="nameproduct{{n.id}}">{{n.category_name}}</h3>
+									<h3><small>{{n.category_discription}}</small></h3>
+								</a>
+								<a href="{% url 'subcats_of_cat' n.id %}" class="btn theme_color" style="color:white;">View All</a>
+
+<!--								<div class="price_box">-->
+
+<!--									<span id="priceproduct{{n.id}}" class="new_price">{{n.price}}</span> <span style="color:blue;"><b>{{n.currency_type}}</b></span>-->
+
+<!--								</div>-->
+								<!-- <ul>
+									<li>
+										<span id="divproduct{{n.id}}" class="divproduct">
+										<a id="product{{n.id}}" class="tooltip-1 product_cart" data-toggle="tooltip" data-placement="left">
+											<i class="ti-shopping-cart"></i>
+											<span>Add to cart</span>
+										</a>
+										</span>
+									</li>
+								</ul> -->
+							</div>
+							<!-- /grid_item -->
+						</div>
+						<!-- /col -->
+						{% endfor %}
+						{% endif %}
+
+
+
+
+					</div>
+					<!-- /row -->
+
+
+
+					<div class="pagination__wrapper">
+						<ul class="pagination">
+							{% if list %}
+							<li>
+								{% if Product_Details_all.has_previous %}
+								<a href="{% url 'index' %}?page={{Product_Details_all.previous_page_number}}" class="prev" title="previous page">&#10094;</a>
+								{% endif %}
+							</li>
+							{% for i in list %}
+							<li>
+								<a href="{% url 'index' %}?page={{i}}" class="{% if page_num == i %}active{% else %}{% endif %}">{{i}}</a>
+							</li>
+							{% endfor %}
+
+							<li>
+								{% if Product_Details_all.has_next %}
+								<a href="{% url 'index' %}?page={{Product_Details_all.next_page_number}}" class="next" title="next page">&#10095;</a>
+								{% endif %}
+							</li>
+							{% endif %}
+
+
+							{% if list1 %}
+							<li>
+								{% if Product_Details_all.has_previous %}
+								<a href="?page={{Product_Details_all.previous_page_number}}{% if request.GET.search_product %}&search_product={{ request.GET.search_product }}{% endif %}" class="prev" title="previous page">&#10094;</a>
+								{% endif %}
+							</li>
+							{% for i in list1 %}
+							<li>
+								<a href="?page={{i}}{% if request.GET.search_product %}&search_product={{ request.GET.search_product }}{% endif %}" class="{% if page_num == i %}active{% else %}{% endif %}">{{i}}</a>
+							</li>
+							{% endfor %}
+
+							<li>
+								{% if Product_Details_all.has_next %}
+								<a href="?page={{Product_Details_all.next_page_number}}{% if request.GET.search_product %}&search_product={{ request.GET.search_product }}{% endif %}" class="next" title="next page">&#10095;</a>
+								{% endif %}
+							</li>
+							{% endif %}
+
+
+
+							{% if list2 %}
+							<li>
+								{% if Product_Details_all.has_previous %}
+								<a href="?page={{Product_Details_all.previous_page_number}}{% if request.GET.checkbox_cat_seach %}&checkbox_cat_seach={{ request.GET.checkbox_cat_seach }}{% endif %}{% if request.GET.price_search_check %}&price_search_check={{ request.GET.price_search_check }}{% endif %}" class="prev" title="previous page">&#10094;</a>
+								{% endif %}
+							</li>
+							{% for i in list2 %}
+							<li>
+								<a href="?page={{i}}{% if request.GET.checkbox_cat_seach %}&checkbox_cat_seach={{ request.GET.checkbox_cat_seach }}{% endif %}{% if request.GET.price_search_check %}&price_search_check={{ request.GET.price_search_check }}{% endif %}" class="active">{{i}}</a>
+							</li>
+							{% endfor %}
+
+							<li>
+								{% if Product_Details_all.has_next %}
+								<a href="?page={{Product_Details_all.next_page_number}}{% if request.GET.checkbox_cat_seach %}&checkbox_cat_seach={{ request.GET.checkbox_cat_seach }}{% endif %}{% if request.GET.price_search_check %}&price_search_check={{ request.GET.price_search_check }}{% endif %}" class="next" title="next page">&#10095;</a>
+								{% endif %}
+							</li>
+							{% endif %}
+						</ul>
+					</div>
+
+				</div>
+				<div class="col-lg-3">
+					{% include 'sidebar.html' %}
+				</div>
+				<!-- /col -->
+
+
+			</div>
+			<!-- /row -->
+
+		</div>
+		<!-- /container -->
+	</main>
+	<!-- /main -->
+
+{% endblock %}
+
+
+{% block js %}
+
+
+
+<script>
+
+
+function show_subcates(cat_id){
+	document.getElementById('show_subcat_div'+cat_id).innerHTML = `www`;
+	console.log('cat_id')
+	console.log(cat_id)
+}
+
+
+// if the add to card button is clicked, add/increament the item
+$('.product_cart').click(function(){
+	// $('.divproduct').on('click', 'button.product_cart', function(){
+	// console.log('clicked')
+	var idstr = this.id.toString();
+	console.log(idstr);
+	if (product_cart[idstr] != undefined){
+		qty = product_cart[idstr][0] + 1;
+		// console.log('clicked')
+	}
+	else{
+		// console.log('clicked')
+		qty = 1;
+		name = document.getElementById('name' + idstr).innerHTML;
+		price = document.getElementById('price' + idstr).innerHTML;
+		product_cart[idstr] = [qty, name, parseInt(price)];
+
+	}
+	// console.log(product_cart)
+	updateCart(product_cart)
+
+	});
+
+
+//update the cart
+updateCart(product_cart)
+function updateCart(product_cart){
+	var sum = 0;
+	for (var item in product_cart){
+		sum = sum + product_cart[item][0]
+		document.getElementById('div'+item).innerHTML = "<button id='minus" + item +"' class='btn_1 minus'>-</button> <span id='val" + item + "''>" + product_cart[item][0] + "</span> <button id='plus" + item + "'class='btn_1 plus'> + </button>";
+	}
+	localStorage.setItem('product_cart', JSON.stringify(product_cart))
+	//document.getElementById('product_cart').innerHTML = sum;
+	updatePopover(product_cart);
+}
+
+
+// if plus or minus button clicked, change the card as well as display value
+$('.divproduct').on("click", "button.minus", function(){
+	// console.log('minus_clicked');
+	a = this.id.slice(12, );
+	// console.log(a)
+	product_cart['product' + a][0] = product_cart['product' + a][0] - 1;
+	product_cart['product' + a][0] = Math.max(0, product_cart['product' + a][0]);
+	document.getElementById('valproduct'+a).innerHTML = product_cart['product' + a][0];
+	updateCart(product_cart)
+});
+
+$('.divproduct').on("click", "button.plus", function(){
+	// console.log('plus_clicked');
+	a = this.id.slice(11, );
+	// console.log(a)
+	product_cart['product' + a][0] = product_cart['product' + a][0] + 1;
+	document.getElementById('valproduct'+a).innerHTML = product_cart['product' + a][0];
+	updateCart(product_cart)
+});
+
+</script>
+
+<script>
+      $('.sidebar').toggleClass("show");
+           $('.feat-btn').click(function(){
+             $('nav ul .feat-show').toggleClass("show");
+             $('nav ul .first').toggleClass("rotate");
+           });
+           $('.serv-btn').click(function(){
+             $('nav ul .serv-show').toggleClass("show1");
+             $('nav ul .second').toggleClass("rotate");
+           });
+           $('nav ul li').click(function(){
+             $(this).addClass("active").siblings().removeClass("active");
+           });
+      </script>
+
+{% endblock %}

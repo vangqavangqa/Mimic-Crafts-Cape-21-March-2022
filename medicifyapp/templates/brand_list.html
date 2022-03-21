@@ -1,0 +1,264 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}Mimic Crafts Cape - Home{% endblock %}
+
+
+{% block body %}
+
+
+<style>
+	.text_max_1 {
+     overflow: hidden;
+     text-overflow: ellipsis;
+     display: -webkit-box;
+     -webkit-line-clamp: 1; /* number of lines to show */
+     -webkit-box-orient: vertical;
+  }
+</style>
+
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+        <link rel="stylesheet" href="{% static '' %}css/font-awesome.css">
+        <link rel="stylesheet" href="{% static '' %}css/templatemo_style.css">
+        <link rel="stylesheet" href="{% static '' %}css/templatemo_misc.css">
+        <link rel="stylesheet" href="{% static '' %}css/flexslider.css">
+        <link rel="stylesheet" href="{% static '' %}css/testimonails-slider.css">
+        <link rel="icon" href="{% static 'default-monochrome.svg' %}" type="{% static 'default-monochrome.svg' %}">
+        <script src="{% static '' %}js/vendor/modernizr-2.6.1-respond-1.1.0.min.js"></script>
+
+{% if messages %}
+{% for message in messages %}
+<div class="container">
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+  <h5 class="text-center"> {{message}}</h5>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+</div>
+
+{% endfor %}
+{% endif %}
+
+	<main>
+		<div class="container margin_30">
+
+			<div class="row">
+
+				<div class="col-lg-9">
+					<h3 class="text-center">All Brands</h3>
+
+
+					<div class="row small-gutters">
+
+						{% if brands %}
+						{% for n in brands %}
+						<div class="col-6 col-md-4 mt-3" style="box-shadow: 2px 2px 5px 2px #888888;">
+							<div class="grid_item">
+<!--								<span class="ribbon off">{{n.product_status}}</span>-->
+								<figure>
+									<a href="{% url 'subcats_of_cat' n.id %}">
+										<img class="card-img-top" src="/media/{{n.Brand_image}}" data-src="/media/{{n.image}}" alt="" style="max-width:100%; width:auto; height:100px; display: block; margin-left: auto; margin-right: auto; padding-top:12px;">
+<!--										<img class="img-fluid lazy" src="/media/{{n.image}}" data-src="/media/{{n.image}}" alt="">-->
+									</a>
+
+
+
+								</figure>
+								<a>
+									<h3 id="nameproduct{{n.id}}">{{n.Brand_name}}</h3>
+									<br>
+									<h3><small class="text_max_1">{{n.Brand_discription}}</small></h3>
+								</a>
+								<br>
+								<a href="{% url 'brand_products' n.id %}" class="btn btn-primary" style="color:white;">View All</a>
+							</div>
+							<!-- /grid_item -->
+						</div>
+						<!-- /col -->
+						{% endfor %}
+						{% endif %}
+
+
+
+
+					</div>
+					<!-- /row -->
+
+
+
+					<div class="pagination__wrapper">
+						<ul class="pagination">
+							{% if list %}
+							<li>
+								{% if Product_Details_all.has_previous %}
+								<a href="{% url 'index' %}?page={{Product_Details_all.previous_page_number}}" class="prev" title="previous page">&#10094;</a>
+								{% endif %}
+							</li>
+							{% for i in list %}
+							<li>
+								<a href="{% url 'index' %}?page={{i}}" class="{% if page_num == i %}active{% else %}{% endif %}">{{i}}</a>
+							</li>
+							{% endfor %}
+
+							<li>
+								{% if Product_Details_all.has_next %}
+								<a href="{% url 'index' %}?page={{Product_Details_all.next_page_number}}" class="next" title="next page">&#10095;</a>
+								{% endif %}
+							</li>
+							{% endif %}
+
+
+							{% if list1 %}
+							<li>
+								{% if Product_Details_all.has_previous %}
+								<a href="?page={{Product_Details_all.previous_page_number}}{% if request.GET.search_product %}&search_product={{ request.GET.search_product }}{% endif %}" class="prev" title="previous page">&#10094;</a>
+								{% endif %}
+							</li>
+							{% for i in list1 %}
+							<li>
+								<a href="?page={{i}}{% if request.GET.search_product %}&search_product={{ request.GET.search_product }}{% endif %}" class="{% if page_num == i %}active{% else %}{% endif %}">{{i}}</a>
+							</li>
+							{% endfor %}
+
+							<li>
+								{% if Product_Details_all.has_next %}
+								<a href="?page={{Product_Details_all.next_page_number}}{% if request.GET.search_product %}&search_product={{ request.GET.search_product }}{% endif %}" class="next" title="next page">&#10095;</a>
+								{% endif %}
+							</li>
+							{% endif %}
+
+
+
+							{% if list2 %}
+							<li>
+								{% if Product_Details_all.has_previous %}
+								<a href="?page={{Product_Details_all.previous_page_number}}{% if request.GET.checkbox_cat_seach %}&checkbox_cat_seach={{ request.GET.checkbox_cat_seach }}{% endif %}{% if request.GET.price_search_check %}&price_search_check={{ request.GET.price_search_check }}{% endif %}" class="prev" title="previous page">&#10094;</a>
+								{% endif %}
+							</li>
+							{% for i in list2 %}
+							<li>
+								<a href="?page={{i}}{% if request.GET.checkbox_cat_seach %}&checkbox_cat_seach={{ request.GET.checkbox_cat_seach }}{% endif %}{% if request.GET.price_search_check %}&price_search_check={{ request.GET.price_search_check }}{% endif %}" class="active">{{i}}</a>
+							</li>
+							{% endfor %}
+
+							<li>
+								{% if Product_Details_all.has_next %}
+								<a href="?page={{Product_Details_all.next_page_number}}{% if request.GET.checkbox_cat_seach %}&checkbox_cat_seach={{ request.GET.checkbox_cat_seach }}{% endif %}{% if request.GET.price_search_check %}&price_search_check={{ request.GET.price_search_check }}{% endif %}" class="next" title="next page">&#10095;</a>
+								{% endif %}
+							</li>
+							{% endif %}
+						</ul>
+					</div>
+
+				</div>
+				<div class="col-lg-3">
+					{% include 'sidebar.html' %}
+
+				</div>
+				<!-- /col -->
+
+
+			</div>
+			<!-- /row -->
+
+		</div>
+		<!-- /container -->
+	</main>
+	<!-- /main -->
+
+{% endblock %}
+
+
+{% block js %}
+
+
+
+<script>
+
+
+function show_subcates(cat_id){
+	document.getElementById('show_subcat_div'+cat_id).innerHTML = `www`;
+	console.log('cat_id')
+	console.log(cat_id)
+}
+
+
+// if the add to card button is clicked, add/increament the item
+$('.product_cart').click(function(){
+	// $('.divproduct').on('click', 'button.product_cart', function(){
+	// console.log('clicked')
+	var idstr = this.id.toString();
+	console.log(idstr);
+	if (product_cart[idstr] != undefined){
+		qty = product_cart[idstr][0] + 1;
+		// console.log('clicked')
+	}
+	else{
+		// console.log('clicked')
+		qty = 1;
+		name = document.getElementById('name' + idstr).innerHTML;
+		price = document.getElementById('price' + idstr).innerHTML;
+		product_cart[idstr] = [qty, name, parseInt(price)];
+
+	}
+	// console.log(product_cart)
+	updateCart(product_cart)
+
+	});
+
+
+//update the cart
+updateCart(product_cart)
+function updateCart(product_cart){
+	var sum = 0;
+	for (var item in product_cart){
+		sum = sum + product_cart[item][0]
+		document.getElementById('div'+item).innerHTML = "<button id='minus" + item +"' class='btn_1 minus'>-</button> <span id='val" + item + "''>" + product_cart[item][0] + "</span> <button id='plus" + item + "'class='btn_1 plus'> + </button>";
+	}
+	localStorage.setItem('product_cart', JSON.stringify(product_cart))
+	document.getElementById('product_cart').innerHTML = sum;
+	updatePopover(product_cart);
+}
+
+
+// if plus or minus button clicked, change the card as well as display value
+$('.divproduct').on("click", "button.minus", function(){
+	// console.log('minus_clicked');
+	a = this.id.slice(12, );
+	// console.log(a)
+	product_cart['product' + a][0] = product_cart['product' + a][0] - 1;
+	product_cart['product' + a][0] = Math.max(0, product_cart['product' + a][0]);
+	document.getElementById('valproduct'+a).innerHTML = product_cart['product' + a][0];
+	updateCart(product_cart)
+});
+
+$('.divproduct').on("click", "button.plus", function(){
+	// console.log('plus_clicked');
+	a = this.id.slice(11, );
+	// console.log(a)
+	product_cart['product' + a][0] = product_cart['product' + a][0] + 1;
+	document.getElementById('valproduct'+a).innerHTML = product_cart['product' + a][0];
+	updateCart(product_cart)
+});
+
+</script>
+
+<script>
+      $('.sidebar').toggleClass("show");
+           $('.feat-btn').click(function(){
+             $('nav ul .feat-show').toggleClass("show");
+             $('nav ul .first').toggleClass("rotate");
+           });
+           $('.serv-btn').click(function(){
+             $('nav ul .serv-show').toggleClass("show1");
+             $('nav ul .second').toggleClass("rotate");
+           });
+           $('nav ul li').click(function(){
+             $(this).addClass("active").siblings().removeClass("active");
+           });
+      </script>
+
+{% endblock %}

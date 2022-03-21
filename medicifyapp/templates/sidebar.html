@@ -1,0 +1,132 @@
+{% load static %}
+{% load dynamic_color_custom_tags %}
+
+
+
+
+    <ul class="list-group">
+
+        <div class="accordion" id="accordionExample" style="box-shadow: 2px 2px 5px 2px #888888;">
+            <div class="card">
+            <div class="card-header" id="headingOne_brands">
+              <h2 class="mb-0">
+                <a href="{% url 'all_brands' %}" class="btn btn-link btn-block text-left text-center" style="background-color:{% count_active_campaign_product %};">
+                    <span style="color:white;">See Brands</span>
+                </a>
+              </h2>
+            </div>
+          </div>
+
+            <div class="card">
+            <div class="card-header" id="headingOne_Services">
+              <h2 class="mb-0">
+                <a href="{% url 'all_services' %}" class="btn btn-link btn-block text-left text-center" style="background-color:{% count_active_campaign_product %}; color:white;">
+                    <span style="color:white;">Service Request</span>
+                </a>
+              </h2>
+            </div>
+          </div>
+
+
+
+        </div>
+    </ul><hr>
+
+
+    <ul class="list-group">
+
+        <div class="accordion" id="accordionExample_1" style="box-shadow: 2px 2px 5px 2px #888888;">
+            <div class="card">
+            <div class="card-header" id="headingOne_cats">
+              <h2 class="mb-0">
+                <button class="btn btn-link btn-block text-left btn text-center" style="background-color:{% count_active_campaign_product %};" type="button" data-toggle="collapse" data-target="#collapseOne_cats" aria-expanded="false" aria-controls="collapseOne_cats" disabled>
+                    <span style="color:white;">Categories</span>
+                </button>
+              </h2>
+            </div>
+          </div>
+            {% for i in Categories_all %}
+          <div class="card">
+            <div class="card-header" id="headingOne{{i.id}}">
+              <h2 class="mb-0">
+                <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne{{i.id}}" aria-expanded="false" aria-controls="collapseOne{{i.id}}">
+                  {% if i.subcat_list %}
+                    <div class="row">
+                        <div class="col-md-1" style="display: grid; justify-items: center; align-items: center;">
+                            <span style="font-size:15px; color:{% count_active_campaign_product %};">▼</span>
+                        </div>
+                        <div class="col-md-10">
+                            <span style="color:{% count_active_campaign_product %};">{{i.category_name}}</span> <small><a style="color:{% count_active_campaign_product %};" href="{% url 'subcats_of_cat' i.id %}">(visit&#8599;)</a></small>
+                        </div>
+                    </div>
+                  {% else %}
+                    <div class="row">
+                        <div class="col-md-1">
+
+                        </div>
+                        <div class="col-md-10">
+                            <a href="{% url 'subcats_of_cat' i.id %}" style="color:{% count_active_campaign_product %};">{{i.category_name}}</a>
+                        </div>
+                    </div>
+
+                  {% endif %}
+
+
+                </button>
+              </h2>
+            </div>
+
+            <div id="collapseOne{{i.id}}" class="collapse" aria-labelledby="headingOne{{i.id}}" data-parent="#accordionExample">
+                {% if i.subcat_list %}
+              <div class="card-body">
+
+                <ul class="list-group list-group-flush">
+                    {% for j in i.subcat_list %}
+                    <li class="list-group-item" style="background-color:white; color:{% count_active_campaign_product %};"><a href="{% url 'brands_list_subcat' j.id %}">{{j.Subcategory}}</a></li>
+                    {% endfor %}
+                </ul>
+
+              </div>
+                {% endif %}
+            </div>
+          </div>
+            {% endfor %}
+
+            <div class="card">
+            <div class="card-header" id="headingOne_custom_project">
+              <h2 class="mb-0">
+                <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne_custom_project" aria-expanded="false" aria-controls="collapseOne_custom_project">
+                    <div class="row">
+                        <div class="col-md-1">
+
+                        </div>
+                        <div class="col-md-10">
+                            <a href="{% url 'custom_project' %}" style="color:{% count_active_campaign_product %};">Custom Project</a>
+                        </div>
+                    </div>
+
+                </button>
+              </h2>
+            </div>
+          </div>
+
+            <div class="card">
+            <div class="card-header" id="headingOne_special_offer">
+              <h2 class="mb-0">
+                <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne_special_offer" aria-expanded="false" aria-controls="collapseOne_special_offer">
+                    <div class="row">
+                        <div class="col-md-1">
+
+                        </div>
+                        <div class="col-md-10">
+                            <a href="{% url 'special_offer' %}" style="color:{% count_active_campaign_product %};">Special Offer</a>
+                        </div>
+                    </div>
+
+                </button>
+              </h2>
+            </div>
+          </div>
+        </div>
+    </ul>
+

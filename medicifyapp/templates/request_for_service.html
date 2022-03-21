@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block title %}Service Request - {{get_service.Service_name}}{% endblock %}
+
+
+{% block body %}
+<div class="list-group-item">
+    <form action="{% url 'submit_for_service' %}" method="POST" class="container" enctype="multipart/form-data"> {% csrf_token %}
+        <div class="pt-5 pb-5"><h4>Request For {{get_service.Service_name}} Service</h4></div>
+        <!-- /row -->
+        <div class="form-group">
+            <label class="form-label">Full Name*</label>
+            <input type="text" id="full_name" name="full_name" class="form-control" placeholder="Full Name*" required>
+            <input type="hidden" id="service_id" name="service_id" value="{{get_service.id}}">
+        </div>
+
+        <div class="row no-gutters">
+            <div class="col-12 form-group pr-1">
+                <label class="form-label">Company Name</label>
+                <input type="text" id="company_name" name="company_name" class="form-control" placeholder="Company Name">
+            </div>
+            <div class="col-6 form-group pr-1">
+                <label class="form-label">City*</label>
+                <input type="text" id="city" name="city" class="form-control" placeholder="City*" required>
+            </div>
+            <div class="col-6 form-group pl-1">
+                <label class="form-label">Postal code*</label>
+                <input type="number" id="postal_code" name="postal_code" class="form-control" placeholder="Postal code*" required>
+            </div>
+        </div>
+
+
+        <!-- /row -->
+        <div class="row no-gutters">
+            <div class="col-md-12 form-group">
+                <label class="form-label">Country*</label>
+                <input type="text" id="country" name="country" class="form-control" placeholder="country*" id="country" required>
+            </div>
+        </div>
+        <!-- /row -->
+        <div class="form-group">
+            <label class="form-label">Phone Number*</label>
+            <input type="number" id="phone" name="phone" class="form-control" placeholder="Phone*" required>
+        </div>
+
+
+        <div class="form-group">
+            <label class="form-label">Email Address*</label>
+            <input type="email" name="email" value="{{request.user.email}}"  class="form-control" placeholder="Email*" required>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">Discription</label>
+            <textarea name="discription" class="form-control" placeholder="Discription" required></textarea>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">Attachment File</label>
+            <input type="file" name="Attachment_files" class="form-control" placeholder="Attachment File">
+        </div>
+
+        <div class="form-group pt-4">
+            <button class="btn btn-outline-primary">Confirm and CheckOut</button>
+        </div>
+
+    </form>
+</div>
+{% endblock %}
