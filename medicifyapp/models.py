@@ -22,6 +22,19 @@ class dynamic_theme_color(models.Model):
         dynamic_theme_color.objects.all().delete()
         super().save(*args, **kwargs)
 
+class footer_dynamic_theme_color(models.Model):
+    class Meta:
+        verbose_name_plural = 'Footer Dynamic Theme Color'
+    color_name = models.CharField(max_length=255)
+    color_code = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.color_name + ' - ' + self.color_code
+
+    def save(self, *args, **kwargs):
+        footer_dynamic_theme_color.objects.all().delete()
+        super().save(*args, **kwargs)
+
 
 class EmailConfirmed(models.Model):
     user=models.OneToOneField(User, on_delete=models.CASCADE)

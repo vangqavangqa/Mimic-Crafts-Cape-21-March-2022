@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Product_Details, Categories,Order, EmailConfirmed, bennar, contact_table, Subcategory, Discount_Coupon, blog_post, Blogs_Comments, Brands, Custom_Project, catalog, newsletter_table, Navbar_logo_text_table, Number_Table_Navbar_Footer, Address_text_table, Table_Special_Offer, Table_Special_Offer_Categories, Social_Links, Table_Special_Offer_Products, Service_Table, Service_Request, Service_Banner, dynamic_theme_color
+from .models import Product_Details, Categories,Order, EmailConfirmed, bennar, contact_table, Subcategory, Discount_Coupon, blog_post, Blogs_Comments, Brands, Custom_Project, catalog, newsletter_table, Navbar_logo_text_table, Number_Table_Navbar_Footer, Address_text_table, Table_Special_Offer, Table_Special_Offer_Categories, Social_Links, Table_Special_Offer_Products, Service_Table, Service_Request, Service_Banner, dynamic_theme_color, footer_dynamic_theme_color
 
 # Register your models here.
 
@@ -21,6 +21,10 @@ class show_order(admin.ModelAdmin):
     list_display = ['id', 'user', 'company_name', 'email', 'order_date']
 
 class show_dynamic_theme_color(admin.ModelAdmin):
+    list_display = ['color_name', 'color_code']
+
+
+class show_footer_dynamic_theme_color(admin.ModelAdmin):
     list_display = ['color_name', 'color_code']
 
 
@@ -54,6 +58,7 @@ class show_Social_link(admin.ModelAdmin):
     list_display = ['Website', 'link']
 
 
+admin.site.register(footer_dynamic_theme_color, show_footer_dynamic_theme_color)
 admin.site.register(dynamic_theme_color, show_dynamic_theme_color)
 admin.site.register(Service_Table)
 admin.site.register(Service_Banner)
