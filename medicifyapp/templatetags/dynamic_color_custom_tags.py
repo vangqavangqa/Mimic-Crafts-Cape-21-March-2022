@@ -22,8 +22,8 @@ def count_active_campaign_product():
 def count_footer_color():
     all_color = footer_dynamic_theme_color.objects.all()
     if all_color:
-        all_color = dynamic_theme_color.objects.first()
+        all_color = footer_dynamic_theme_color.objects.first()
         return all_color.color_code
     else:
-        default_color_code='#07889E'
+        default_color_code='#172134'
         return default_color_code
