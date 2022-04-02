@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Product_Details, Categories,Order, EmailConfirmed, bennar, contact_table, Subcategory, Discount_Coupon, blog_post, Blogs_Comments, Brands, Custom_Project, catalog, newsletter_table, Navbar_logo_text_table, Number_Table_Navbar_Footer, Address_text_table, Table_Special_Offer, Table_Special_Offer_Categories, Social_Links, Table_Special_Offer_Products, Service_Table, Service_Request, Service_Banner, dynamic_theme_color, footer_dynamic_theme_color
+from .models import Product_Details, Categories,Order, EmailConfirmed, bennar, contact_table, Subcategory, Discount_Coupon, blog_post, Blogs_Comments, Brands, Custom_Project, catalog, newsletter_table, Navbar_logo_text_table, Number_Table_Navbar_Footer, Address_text_table, Table_Special_Offer, Table_Special_Offer_Categories, Social_Links, Table_Special_Offer_Products, Service_Table, Service_Request, Service_Banner, dynamic_theme_color, footer_dynamic_theme_color, welcome_popup
 
 # Register your models here.
 
@@ -83,3 +83,4 @@ admin.site.register(catalog)
 admin.site.register(Navbar_logo_text_table)
 admin.site.register(Number_Table_Navbar_Footer)
 admin.site.register(Address_text_table)
+admin.site.register(welcome_popup)

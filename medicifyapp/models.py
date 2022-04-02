@@ -362,3 +362,14 @@ class Social_Links(models.Model):
         return self.Website
 
 
+
+class welcome_popup(models.Model):
+    class Meta:
+        verbose_name_plural = 'Welcome Popup'
+
+    Title = models.CharField(max_length=255, default="")
+    Content = RichTextField()
+    def __str__(self):
+        return self.Title
+
+

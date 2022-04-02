@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, HttpResponse
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
-from .models import Product_Details, Categories, Order, bennar, contact_table, Subcategory, Discount_Coupon, blog_post, Blogs_Comments, Brands, Custom_Project, catalog, newsletter_table, Navbar_logo_text_table, Number_Table_Navbar_Footer, Address_text_table, Table_Special_Offer, Table_Special_Offer_Categories, Social_Links, Table_Special_Offer_Products, Service_Table, Service_Request, Service_Banner
+from .models import Product_Details, Categories, Order, bennar, contact_table, Subcategory, Discount_Coupon, blog_post, Blogs_Comments, Brands, Custom_Project, catalog, newsletter_table, Navbar_logo_text_table, Number_Table_Navbar_Footer, Address_text_table, Table_Special_Offer, Table_Special_Offer_Categories, Social_Links, Table_Special_Offer_Products, Service_Table, Service_Request, Service_Banner, welcome_popup
 from django.db.models import Q
 from django.http import JsonResponse
 from django.core.paginator import Paginator, EmptyPage
@@ -85,6 +85,7 @@ def special_offer(request):
 
 
 def index(request):
+    welcome_popup_last = welcome_popup.objects.all().last()
     Product_Details_all = Product_Details.objects.all()
     all_category = Categories.objects.all().order_by('category_name')
     # pagination
@@ -125,7 +126,7 @@ def index(request):
     else:
         bennar_all = None
     all_latest_pst = blog_post.objects.order_by('-time')[:6]
-    context2 = {'cats':page, 'Categories_all':Categories_all, 'list':list, 'page_num':page_num, 'bennar_all':bennar_all, 'bennar_first':bennar_first, 'page_num':page_num, 'all_latest_pst':all_latest_pst}
+    context2 = {'welcome_popup_last':welcome_popup_last, 'cats':page, 'Categories_all':Categories_all, 'list':list, 'page_num':page_num, 'bennar_all':bennar_all, 'bennar_first':bennar_first, 'page_num':page_num, 'all_latest_pst':all_latest_pst}
     return render(request, 'index.html', context2)
 
 

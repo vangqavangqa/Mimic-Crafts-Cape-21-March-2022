@@ -5,7 +5,6 @@
 
 {% block title %}Mimic Crafts Cape - Home{% endblock %}
 
-
 {% block body %}
 
 
@@ -17,8 +16,14 @@
         <link rel="stylesheet" href="{% static '' %}css/templatemo_misc.css">
         <link rel="stylesheet" href="{% static '' %}css/flexslider.css">
         <link rel="stylesheet" href="{% static '' %}css/testimonails-slider.css">
+
         <link rel="icon" href="{% static 'default-monochrome.svg' %}" type="{% static 'default-monochrome.svg' %}">
         <script src="{% static '' %}js/vendor/modernizr-2.6.1-respond-1.1.0.min.js"></script>
+
+
+
+
+
 
 {% if messages %}
 {% for message in messages %}
@@ -33,8 +38,6 @@
 
 {% endfor %}
 {% endif %}
-
-
 
 
 
@@ -422,11 +425,45 @@
 	</main>
 	<!-- /main -->
 
+
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalScrollable">
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalScrollableTitle">{{welcome_popup_last.Title}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        {{welcome_popup_last.Content | safe}}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
 {% endblock %}
 
 
 {% block js %}
-
+{% if welcome_popup_last %}
+<script>
+	jQuery.noConflict();
+	$('#exampleModalScrollable').modal('show');
+</script>
+{% endif %}
 
 
 <script>
@@ -512,6 +549,11 @@ $('.divproduct').on("click", "button.plus", function(){
            $('nav ul li').click(function(){
              $(this).addClass("active").siblings().removeClass("active");
            });
+
+
+
+
+
       </script>
 
 {% endblock %}
